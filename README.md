@@ -1,13 +1,14 @@
 # Governance Policy Specification
 
-A specification model for computational governance policies inspired from [ADR](https://adr.github.io/) (Architectural Decision Record). It's goal is to enable the creation of version-controlled policies that include:
+A specification model for computational governance policies inspired from [ADR](https://adr.github.io/) (Architectural Decision Record). Its goal is to enable the creation of version-controlled policies that include:
 
-- a **policy lifecycle** state
+- a reference **date** and a **policy lifecycle** state
+- the policy **title**
 - the **context**
 - the **decision**
 - the **consequences** and accepted trade-offs
 
-These are in common with the ADR model. In this specification, that aims to perfectly tailor the Data Mesh context, some more sections are added:
+These are basically in common with the ADR model. In this specification, that aims to perfectly tailor the Data Mesh context, some more sections are added:
 
 - an **implementation steward**
 - where the **policy becomes computational**
@@ -19,12 +20,14 @@ Let's deep dive into each section.
 ## Policy Lifecycle State
 This can be as simple as a label that tracks down the state of the polices. Common states are:
 - `NEW`, when a new policy is created and the same context/decision has never been addressed in other existing policies;
-- `AMENDS xxxx` or `AMENDED by yyyy`, when a policy amends (or is amended by) another existing policy
-- `SUPERCEDES xxxx` or `SUPERCEDED by yyyy`, when a policy supercedes (or is superceded by) another existing policy
+- `AMENDS` or `AMENDED`, when a policy amends (or is amended by) another existing policy
+- `SUPERCEDES` or `SUPERCEDED`, when a policy supercedes (or is superceded by) another existing policy
 - `DEPRECATED`, when a policy ceases to be valid/applied and no other one amends or supercedes it.
 
+**NOTE:** in the case of amend* and supercede* the related policy should be linked.
+
 ## Context
-This section describes what is the context where the policies applies to (and why).
+This section describes what is the context where the policy applies to (and why).
 
 ## Decision
 The decision the policies aims to apply.
@@ -47,7 +50,7 @@ An example of usage includes:
 2. (optional) installing a tool so that every contributor follows the same process (which is a good idea to document in the repo itself), e.g. [adr-tools](https://github.com/npryce/adr-tools)
 3. keep track of governance policies to create by leveraging the issue tracking system of the git repo, making use of all the features the issue tracking system provides (like labels, epics, etc ...)
 4. work out the policies issues, creating the related mere requests
-5. implement the policy, leveraging the template here provided
+5. implement the policy, leveraging the [template](adr_template.md) here provided
 6. when the policy is ready, merge it and make it executive
 
 An important **note** on points 3, 4, 5, and 6: in the case of Data Mesh, the federated governance team (which include SME, Subject Matter Experts, coming from all the most meaningful units of the company like engineering, security, compliance, as well as domains' representative spokespersons) should collaborate in their own perimeters of expertise. Probably, a Federated Governance Team "core members" group (e.g. the Platform team) could take care of the final merge of the policies as in point 6, thus also acting as a final validation.
