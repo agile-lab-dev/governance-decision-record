@@ -1,5 +1,5 @@
 
-# {title}
+# {GDR title}
 
 ![NEW](https://img.shields.io/badge/HISTORY-NEW-brightgreen?style=flat&logo=CodeReview)
 ![AMENDS](https://img.shields.io/badge/HISTORY-AMENDS-green?style=flat&logo=CodeReview)
@@ -39,4 +39,4 @@
 
 - **LOCAL POLICY**: (where the policy is applied at runtime, with local scope)
 - **GLOBAL POLICY**: (where the policy is applied at deploy-time, with global scope)
-  - policy code: (link to the policy-as-code related file)
+  - policy code: (link to the policy-as-code related file, if any)
