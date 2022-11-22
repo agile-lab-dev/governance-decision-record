@@ -1,0 +1,100 @@
+components:
+  - id: urn:dmb:cmp:cards:ccfrauds:1:top_10_historical-year
+    name: top-10-ccfrauds-historical-year
+    description: an aggregation of top 10 x y for the historical series of credit cards frauds, partitioned by year
+    kind: outputport
+    version: 1.0.1
+    platform: Azure
+    technology: ADLSgen2
+    outputPortType: Files
+    dataContract:
+      serializationFormat: parquet
+      compressionCodec: snappy
+      partitionedBy: [ year ]
+      schema:
+        - name: customerId
+          dataType: string
+          description: global addressable identifier for a customer
+          constraint: PRIMARY_KEY
+          tags:
+            - tagFQN: GlobalAddressableIdentifier
+              source: Tag
+              labelType: Manual
+              state: Confirmed
+        - name: name
+          dataType: string
+          description: customer's first name
+          constraint: NOT_NULL
+          tags:
+            - tagFQN: PII
+              source: Tag
+              labelType: Manual
+              state: Confirmed
+        - name: surname
+          dataType: string
+          description: customer's last name
+          constraint: NOT_NULL
+          tags:
+            - tagFQN: PII
+              source: Tag
+              labelType: Manual
+              state: Confirmed
+        - name: businessTs
+          dataType: timestamp
+          description: the business timestamp, to be leveraged for time-travelling
+          constraint: NOT_NULL
+          tags: [ ]
+        - name: writeTs
+          dataType: timestamp
+          description: the technical (write) timestamp, to be leveraged for time-travelling
+          constraint: NOT_NULL
+          tags: [ ]
+        - name: amount
+          dataType: double
+          description: the amount in EUR, 2 decimals precision
+          constraint: NOT_NULL
+        - name: year
+          dataType: int
+          description: reference year of the event
+          constraint: NOT_NULL
+      SLA:
+        intervalOfChange: "1 hour"
+        timeliness: "10 minutes"
+        upTime: 99.9
+      termsAndConditions: confidential, it shouldn't be exported outside of the organization
+      endpoint: https://acmedpcardssvilop.blob.core.windows.net/cards-ccfrauds
+      biTempBusinessTs: businessTs
+      biTempWriteTs: writeTs
+    tags:
+      - tagFQN: cards
+        source: Tag
+        labelType: Manual
+        state: Confirmed
+      - tagFQN: analytical
+        source: Tag
+        labelType: Manual
+        state: Confirmed
+      - tagFQN: svil
+        source: Tag
+        labelType: Manual
+        state: Confirmed
+      - tagFQN: PII
+        source: Tag
+        labelType: Manual
+        state: Confirmed
+
+    specific:
+      subscription: 0f876e36-124c-77f1-aabb-e543b3d2b3ad
+      resourceGroup: cards.data_products
+      storageAccount: acmecardsdpsvilop
+      container: cards-ccfrauds
+      shared_access_key_enabled: false
+      infrastructure_encryption_enabled: true
+      versioning_enabled: true
+      accountKind: StorageV2
+      directory:
+        - /1
+      geoReplication: GRS
+      accessTier: Hot
+      performance: Premium
+      region: germanywestcentral
