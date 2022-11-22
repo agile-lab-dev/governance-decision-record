@@ -1,5 +1,5 @@
 
-# {GDR title}
+# {Governance Decision Record title}
 
 ![NEW](https://img.shields.io/badge/HISTORY-NEW-brightgreen?style=flat&logo=CodeReview)
 ![AMENDS](https://img.shields.io/badge/HISTORY-AMENDS-green?style=flat&logo=CodeReview)
