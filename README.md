@@ -1,6 +1,6 @@
-# Governance Policy Specification
+# Governance Decision Record
 
-A specification model for computational data governance policies inspired from [ADR](https://adr.github.io/) (Architectural Decision Record). Its goal is to enable the creation of version-controlled policies that include:
+The Governance Decision Record (**GDR**) is a specification model for (computational) data governance policies inspired from [ADR](https://adr.github.io/) (Architectural Decision Record). Its goal is to enable the creation of version-controlled data governance policies that include:
 
 - a **policy lifecycle** state
 - a **policy history** state
@@ -9,12 +9,14 @@ A specification model for computational data governance policies inspired from [
 - the **decision**
 - the **consequences** and accepted trade-offs
 
-These are basically in common with the ADR model. In this specification, that aims to perfectly tailor the Data Mesh context, some more sections are added:
+These are basically in common with the ADR model. In this specification, that aims to perfectly tailor the Data Mesh context but can also be used for differnt data management paradigms, some more sections are added:
 
 - an **implementation steward**
 - where the **policy becomes computational**
 
-Having documented and version controlled policies, is also useful to keep track of the activities of the governance team (federated governance team, in the case of Data Mesh).
+Having documented and version controlled policies is also useful to enable distributed (federated) async but tracked and organized work by the governance team (*federated* governance team, in the storytelling of Data Mesh).
+
+Documents are usually created when taking design decisions in the IT. Likewise the role of the ADR in software architectures, the GDR goal is to enable structured/versioned/governable federated work on a git repository that can include code (policy-as-code), thus closing the gap with the "platforms" world - where most of the governance decision must be executed or made live: in fact, GDR paired with policies as code can be directly accessed by a governance platform, thus offering the "computational" policy capability. When this capability is also orchestrated as part of a more complex lifecycle of technical assets (like self-serve provisioning for data products), then the picture is complete. Agile Lab has made this view a real thing, creating [Witboost Data Mesh Boost](https://www.agilelab.it/witboost-data-mesh-main).
 
 Let's deep dive into each section.
 
@@ -25,7 +27,7 @@ This can be as simple as a label tracking down the **lifecycle** state of a poli
 - `APPROVED`, when a policy has been formally approved: this makes it actionable and a reference for the overall governance;
 - `REJECTED`, when a policy has been formally rejected (after the approval process).
 
-In the [template](adr_template.md) file, some pre-compiled web-rendered labels are provided.
+In the [GDR template](gdr_template.md) file, some pre-compiled web-rendered labels are provided.
 
 ## Policy History State
 This can be as simple as a label tracking down the **history** state of a policy. Common states are:
@@ -37,7 +39,7 @@ This can be as simple as a label tracking down the **history** state of a policy
 
 **NOTE:** in the case of amend* and supercede* the related policy should be linked.
 
-In the [template](adr_template.md) file, some pre-compiled web-rendered labels are provided.
+In the [GDR template](gdr_template.md) file, some pre-compiled web-rendered labels are provided.
 
 ## Context
 This section describes what is the context where the policy applies to (and why).
@@ -66,25 +68,25 @@ An example of usage includes:
 2. (optional) installing a tool so that every contributor follows the same process (which is a good idea to document in the repo itself), e.g. [adr-tools](https://github.com/npryce/adr-tools)
 3. keep track of governance policies to create by leveraging the issue tracking system of the git repo, making use of all the features the issue tracking system provides (like labels, epics, etc ...)
 4. work out the policies issues, creating the related mere requests
-5. implement the policy, leveraging the [template](adr_template.md) here provided
+5. implement the policy, leveraging the [template](gdr_template.md) here provided
 6. provide a metadata model, example, and validation (policy-as-code) file
 7. when the policy is ready, merge it (according to the governance process) and make it executive.
 
 An important **note** on points 3, 4, 5, 6, and 7: in the case of **Data Mesh**, the federated governance team (which include SME, Subject Matter Experts, coming from all the most meaningful units of the company like engineering, security, compliance, as well as domains' representative spokespersons) should collaborate in their own perimeters of expertise. Probably, a Federated Governance Team "core members" group (e.g. the Platform team) could take care of the final merge of the policies as in point 6, thus also acting as a final validation.
 
-The policies can (will) evolve over time during the data platform lifecycle. In order to account and embrace the change, it's suggested to create a folder for every ADR and name the ADR (policy) file with the notation: `xxxx-policy-content-or-decision.md` (in case the Markdown format is used for the policy document, xxxx is a monothonically increasing id that tracks the policy's evolutions/version). Generally speaking of ADRs, multiple different ADRs (addressing different decisions of a same area of application) are supposed to cohexist within the same folder: in the case of governance policies this could lead to misunderstanding of the incremental sequence id, but still grouping into nested folders/subfolders can be used.
+The policies can (will) evolve over time during the data platform lifecycle. In order to account and embrace the change, it's suggested to create a folder for every GDR and name the GDR (policy) file with the notation: `xxxx-policy-content-or-decision.md` (in case the Markdown format is used for the policy document, xxxx is a monothonically increasing id that tracks the policy's evolutions/version). Generally speaking of GDRs, multiple different GDRs (addressing different decisions of a same area of application) are supposed to cohexist within the same folder: in the case of governance policies this could lead to misunderstanding of the incremental sequence id, but still grouping into nested folders/subfolders can be used.
 
 When evolving an existing policy, is important to take care of the policy lifecycle state, expecially when amending or superceding existing policies. By using the 1:1 ration for folder:policy, then it's straightforward to identify the most recent (and supposedly currently valid) policy for every context.
 
 ### Example
 
-A pretty exhaustive example policy and related metadata + policy-as-code validation files is provided in the [example](example/data-mesh/data-product/output-port/files) folder. In this example, the specific architectural decision (a.k.a. now as ADR or governance policy) is provided to describe how an *Output Port* of type "FILES" should be defined, provisioned, configured, described, validated.
+A pretty exhaustive example policy and related metadata + policy-as-code validation files is provided in the [example](example/data-mesh/data-product/output-port/files) folder. In this example, the specific architectural decision (a.k.a. GDR now) is provided to describe how an *Output Port* of type "FILES" should be defined, provisioned, configured, described, validated.
 The folder contains 3 files:
-- [0001-data-product-output-port-files.md](example/data-mesh/data-product/output-port/files/0001-data-product-output-port-files.md) containing the descriptive ADR (as implementation of the [template](adr_template.md)). In this example, we took inspiration from the Financial Services world (in terms of constraints);
+- [0001-data-product-output-port-files.md](example/data-mesh/data-product/output-port/files/0001-data-product-output-port-files.md) containing the descriptive GDR (as implementation of the [template](gdr_template.md)). In this example, we took inspiration from the Financial Services world (in terms of constraints);
 - [0001-data-product-output-port-files.cue](example/data-mesh/data-product/output-port/files/0001-data-product-output-port-files.cue) containing the [CUE lang](https://cuelang.org) policy-as-code validation file, that supposedly will be integrated in the Data Mesh self-service infrastructure-as-a-platform;
 - [0001-data-product-output-port-files-example.yaml](example/data-mesh/data-product/output-port/files/0001-data-product-output-port-files-example.yaml) containing an example of metadata specification with real world values.
 
-The ADR versioning assumes this is the first policy created to address this governance topic.
+The GDR versioning assumes this is the first policy created to address this governance topic.
 
 The policy metadata can be validated with the policy-as-code file using the CUE CLI (if installed): 
 
