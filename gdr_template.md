@@ -37,6 +37,7 @@
 
 ## Where the policy becomes computational
 
-- **LOCAL POLICY**: (where the policy is applied at runtime, with local scope)
-- **GLOBAL POLICY**: (where the policy is applied at deploy-time, with global scope)
-  - policy code: (link to the policy-as-code related file, if any)
+- **LOCAL POLICY**: (when the policy is applied as part of the local scope of a data asset, or data product, e.g. live execution context of an orchestrated set of pipelines)
+- **GLOBAL POLICY**: (when the policy is applied to all the assets, e.g. to all the data products using a specific output port)
+
+- policy code: (link to the policy-as-code related file, if any)
