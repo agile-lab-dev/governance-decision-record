@@ -71,7 +71,7 @@ An example of usage includes:
 1. setting up a git repo
 2. (optional) installing a tool so that every contributor follows the same process (which is a good idea to document in the repo itself), e.g. [adr-tools](https://github.com/npryce/adr-tools)
 3. keep track of governance policies to create by leveraging the issue tracking system of the git repo, making use of all the features the issue tracking system provides (like labels, epics, etc ...)
-4. work out the policies issues, creating the related mere requests
+4. work out the policies issues, creating the related merge requests
 5. implement the policy, leveraging the [template](gdr_template.md) here provided
 6. provide a metadata model, example, and validation (policy-as-code) file
 7. when the policy is ready, merge it (according to the governance process) and make it executive.
@@ -82,6 +82,8 @@ The policies can (will) evolve over time during the data platform lifecycle. In 
 
 When evolving an existing policy, is important to take care of the policy lifecycle state, expecially when amending or superceding existing policies. By using the 1:1 ration for folder:policy, then it's straightforward to identify the most recent (and supposedly currently valid) policy for every context.
 
+*NOTE*: it could be worthwile to also have a super high-level document reporting the current state of the system/company according to (and reporting) all the decisions leading to the current status quo.
+
 ### Example
 
 A pretty exhaustive example policy and related metadata + policy-as-code validation files is provided in the [example](example/data-mesh/data-product/output-port/files) folder. In this example, the specific architectural decision (a.k.a. GDR now) is provided to describe how an *Output Port* of type "FILES" should be defined, provisioned, configured, described, validated.
@@ -91,6 +93,8 @@ The folder contains 3 files:
 - [0001-data-product-output-port-files-example.yaml](example/data-mesh/data-product/output-port/files/0001-data-product-output-port-files-example.yaml) containing an example of metadata specification with real world values.
 
 The GDR versioning assumes this is the first policy created to address this governance topic.
+
+The overall vision is reported in the [top level strategy file](./example/strategy.md).
 
 The policy metadata can be validated with the policy-as-code file using the CUE CLI (if installed): 
 
